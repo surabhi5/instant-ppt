@@ -1,12 +1,15 @@
 import os
 from pptx import Presentation
 from bs4 import BeautifulSoup
+from pptx.util import Inches
+import downloadimage
 import requests
 
 finalSummary=[]
 
 def tt(topic):
 
+    downloadimage.downloadImage(topic)
     response = requests.get("https://en.wikipedia.org/wiki/"+topic)
     soup = BeautifulSoup(response.text,"lxml")
     t = soup.find_all('p') #fetch <p></p> tags 
@@ -32,6 +35,9 @@ def tt(topic):
     words=word_tokenize(text)
     
     sentences=sent_tokenize(text)
+    finalSummary.append(sentences[0])
+    finalSummary.append(sentences[1])
+    finalSummary.append(sentences[2])
     from stopwords import stopwords
 
     _stopwords=word_tokenize(stopwords)
@@ -101,8 +107,34 @@ title.text = "Hello, World!"
 subtitle.text = "python-pptx is here!"
 
 
-    
+
+
+img_path = 'image.jpg'
+
+#current_dir=os.path.dirname(os.path.realpath(__file__))
 result = tt(query)
+
+#prs = Presentation(current_dir+"\\abcd.pptx")
+blank_slide_layout = prs.slide_layouts[0]
+slide = prs.slides.add_slide(blank_slide_layout)
+title=slide.shapes.title
+para=slide.placeholders[1]
+title.text=" "
+para.text=" "
+
+#left = top = Inches(5)
+#pic = slide.shapes.add_picture(img_path, left, top)
+top=Inches(2)
+left = Inches(1)
+height = Inches(4)
+pic = slide.shapes.add_picture(img_path, left, top, height=height)
+
+#prs.save('test.pptx')
+
+
+
+    
+
 
 for sentence_result in result:
     slide = prs.slides.add_slide(title_slide_layout)
