@@ -7,11 +7,13 @@ just type in the topic and you get the ppt being created without any hassle
 ### Prerequisites
 
 1. browse to the cloned directory
-      '''  cd instant_ppt '''
+      ```
+      cd instant_ppt 
+      ```
 2. requirements.txt lists all the dependencies that need to get the project up and running on your local serveer
-'''  pip install -r requirements.txt
+```  pip install -r requirements.txt
                or
-     python -m pip install -r requirements.txt '''
+     python -m pip install -r requirements.txt ```
 3. install lxml module
   pip install lxml
          or
