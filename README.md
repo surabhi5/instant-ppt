@@ -13,25 +13,25 @@ just type in the topic and you get the ppt being created without any hassle
 2. requirements.txt lists all the dependencies that need to get the project up and running on your local serveer
     ```  
     pip install -r requirements.txt
-               or
+    or
     python -m pip install -r requirements.txt 
      ```
 3. install lxml module
    ```
    pip install lxml
-         or
+   or
    python -m pip install lxml
    ```
 4. for generating the instant ppt  
   ```
    pip install python-pptx
-            or
+   or
    python -m pip install python-pptx
   ```
 5. for generating the image
   ```
    pip install --upgrade google-api-python-client    
-                or
+   or
    python -m pip install --upgrade google-api-python-client   
   ```    
 
