@@ -23,17 +23,17 @@ just type in the topic and you get the ppt being created without any hassle
    python -m pip install lxml
    ```
 4. for generating the instant ppt  
-  ```
+     ```
      pip install python-pptx
      or
      python -m pip install python-pptx
-  ```
+     ```
 5. for generating the image
-  ```
-   pip install --upgrade google-api-python-client    
-   or
-   python -m pip install --upgrade google-api-python-client   
-  ```    
+     ```
+     pip install --upgrade google-api-python-client    
+     or
+     python -m pip install --upgrade google-api-python-client   
+     ```    
 
 ## Now run
 ```
