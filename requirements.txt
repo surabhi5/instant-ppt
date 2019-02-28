@@ -1,0 +1,6 @@
+python_pptx==0.6.17
+nltk==3.2.4
+requests==2.18.4
+Pillow==5.4.1
+beautifulsoup4==4.7.1
+google_api_python_client==1.7.8
