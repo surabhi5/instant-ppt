@@ -24,9 +24,9 @@ just type in the topic and you get the ppt being created without any hassle
    ```
 4. for generating the instant ppt  
   ```
-   pip install python-pptx
-   or
-   python -m pip install python-pptx
+     pip install python-pptx
+     or
+     python -m pip install python-pptx
   ```
 5. for generating the image
   ```
