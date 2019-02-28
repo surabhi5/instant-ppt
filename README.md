@@ -2,9 +2,9 @@
 
 just type in the topic and you get the ppt being created without any hassle 
 
-##Installation
+## Installation
 
-###Prerequisites
+### Prerequisites
 
 1. browse to the cloned directory
  cd instant_ppt
@@ -28,7 +28,7 @@ just type in the topic and you get the ppt being created without any hassle
 ## Now run
  python instant_ppt.py
 
-##OUTPUT will be like :-
+## OUTPUT will be like :-
 Enter choice
 your choice
 name1.ppt generated   
