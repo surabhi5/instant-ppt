@@ -4,13 +4,14 @@ from bs4 import BeautifulSoup
 from pptx.util import Inches
 import downloadimage
 import requests
-
+from search import scrape
 finalSummary=[]
 
 def tt(topic):
-
+    #downloadimage.downloadImage(topic)
+    url=scrape(topic)
     downloadimage.downloadImage(topic)
-    response = requests.get("https://en.wikipedia.org/wiki/"+topic)
+    response = requests.get(url)
     soup = BeautifulSoup(response.text,"lxml")
     t = soup.find_all('p') #fetch <p></p> tags 
     
@@ -78,17 +79,20 @@ def tt(topic):
 #paralleldots.get_api_key()
 
     #finalSummary=[]
+    from test1 import analyse
+
     for sentence in sentence_scores.keys():
         genFact=sentence_scores[sentence]/total_words*3.75
         if(genFact>0.85):
             finalSummary.append(sentence)
+
             i+=1
            #print(str(i)+">"+sentence+" SCORE : "+str(genFact))
             #print()
             #print()
 
 
-    
+    analyse(finalSummary) #analyze sentiment
     return(finalSummary)
 
 print("Enter query : ")
