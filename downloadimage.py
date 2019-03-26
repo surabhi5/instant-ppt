@@ -1,18 +1,14 @@
-cxid = "017848639769224862235:b7gsieimvak"
-apikey = "AIzaSyB5Jv4i8B1uhGmUsSQ-k8LIRraN2pR9rUI"
-
-
-#AIzaSyDunEmjcKvlxjNklM_6LiVa_EzZmu4Zfxs
-#005266366316328525556:yuhznr1i0pg
-
-from googleapiclient.discovery import build
-import json
-import requests
-#from pprint import pprint
-from PIL import Image
-
-##Download the image for future implementation
 def downloadImage(searchTerm):
+    cxid = "017848639769224862235:b7gsieimvak"
+    apikey = "AIzaSyB5Jv4i8B1uhGmUsSQ-k8LIRraN2pR9rUI"
+
+    #GET CXID AND API KEY FROM : https://developers.google.com/custom-search/v1/overview
+
+    from googleapiclient.discovery import build
+    import json
+    import requests
+    #from pprint import pprint
+    from PIL import Image
     #use google custom search to retrieve the first image the serach returns
     service = build("customsearch", "v1",
             developerKey=apikey) #to use google custom search engine
@@ -20,29 +16,24 @@ def downloadImage(searchTerm):
     res = service.cse().list(
       q=searchTerm, #query to be searched
       cx=cxid, #custom search engine ID
-      num=1, #no of images i want to download
+      num=3, #no of images you want to download
       searchType='image', #type of file
       fileType='jpg', #extension
       safe='off', #not child friendly
     ).execute() #run this engine 
-   # pprint(res)
+
+    #pprint(res) #print JSON if you want to see the structure
     linkImg=""
 
-    #extract link from returned JSON String
+    #extract link from returned JSON String and download image
+    i=0
     for data in res['items']:
         linkImg=data['link']
-        print(linkImg)
 
-    #download image
-    f=open('image.jpg','wb') 
-    f.write(requests.get(linkImg).content)
-    f.close()
+        f=open('image'+str(i)+'.jpg','wb') 
+        f.write(requests.get(linkImg).content)
+        f.close()
 
-    #uncomment to open image automatically
-    """
-    img=Image.open(searchTerm+'.jpg')
-    img.show()
-    """
-#print ("enter query :")
-#query=input()
-#downloadImage(query)
+        print("Downloaded from :"+ linkImg)
+        i+=1
+
