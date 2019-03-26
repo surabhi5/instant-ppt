@@ -1,4 +1,3 @@
-
 def analyse(sentences):
     from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
@@ -21,18 +20,6 @@ def analyse(sentences):
         else:
             neutral_sentences.append(sentence)       
         print()
+
+    return neutral_sentences,positive_sentences,negative_sentences
     
-    print("THINGS TO KNOW ABOUT :")
-
-    for s in neutral_sentences :
-        print(s)
-        print()
-
-    print("ADVANTAGES : ")
-    for s in positive_sentences :
-        print(s)
-        print()
-    print("DISADVANTAGES : ")
-    for s in negative_sentences :
-        print(s)
-        print()
