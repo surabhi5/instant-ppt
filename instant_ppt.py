@@ -5,7 +5,7 @@ from pptx.util import Inches
 import downloadimage
 import requests
 from search import scrape
-from test1 import analyse
+from analyzer import analyze
 
 finalSummary=[]
 
@@ -15,7 +15,9 @@ neu=[] #store neutral sentences
 
 def tt(topic):
     url=scrape(topic)
-    downloadimage.downloadImage(topic)
+    print("Downloading :" +url[(url.rfind('/')+1):len(url)])
+    downloadimage.downloadImage(url[(url.rfind('/')+1):len(url)])
+    
 
     response = requests.get(url)
     soup = BeautifulSoup(response.text,"lxml")
@@ -91,7 +93,7 @@ query=input()
 #current_dir=os.path.dirname(os.path.realpath(__file__))
 result = tt(query)
 
-neu,pos,neg=analyse(result) #analyze sentiment
+neu,pos,neg=analyze(result) #analyze sentiment
 
 current_dir=os.path.dirname(os.path.realpath(__file__))
 
@@ -214,4 +216,4 @@ if(len(neg)>0):
         para.text=s
 
 
-prs.save('name1.pptx')
+prs.save('output.pptx')

@@ -1,4 +1,4 @@
-def analyse(sentences):
+def analyze(sentences):
     from nltk.sentiment.vader import SentimentIntensityAnalyzer
 
     sid = SentimentIntensityAnalyzer()
