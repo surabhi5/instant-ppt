@@ -15,8 +15,11 @@ neu=[] #store neutral sentences
 
 def tt(topic):
     url=scrape(topic)
-    print("Downloading :" +url[(url.rfind('/')+1):len(url)])
-    downloadimage.downloadImage(url[(url.rfind('/')+1):len(url)])
+    
+    imagetodownload = url[(url.rfind('/')+1):len(url)]
+    imagetodownload = imagetodownload.replace('_', ' ')
+    print("Downloading image of :" + imagetodownload)
+    downloadimage.downloadImage(imagetodownload)
     
 
     response = requests.get(url)
