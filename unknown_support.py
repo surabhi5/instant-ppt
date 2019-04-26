@@ -78,11 +78,33 @@ def pressPPT():
         print(str(e))
 
 def makePPT(url):
-    from instant_ppt import tt, savePPT
-    results=tt(url)
+    if(len(url.strip())>0):
+        from instant_ppt import tt, savePPT
+        results=tt(url)
 
-    s=url[(url.rfind('/')+1):len(url)]
-    savePPT(results,s)
+        s=url[(url.rfind('/')+1):len(url)]
+        savePPT(results,s)
+    else:
+        print("Nothing selected... not doing anything..")
+
+def clickOpen():
+    print("Opening..")
+    filename="output.pptx"
+    try:
+        t1=Thread(target=openFile,args=(filename,))
+        t1.start()
+    except Exception as e:
+        print(str(e))
+
+def openFile(filename):
+    try:
+        import os
+        if(os.path.exists(filename)):
+            os.system("start "+filename)
+        else:
+            print("File doesn't exist")
+    except Exception as e:
+        print(str(e))    
 
 
 

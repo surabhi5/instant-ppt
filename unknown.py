@@ -118,6 +118,7 @@ class Toplevel1:
         self.Button3.configure(pady="0")
         self.Button3.configure(text='''Open..''')
         self.Button3.configure(width=67)
+        self.Button3.configure(command=unknown_support.clickOpen)
 
         self.Label1 = tk.Label(top)
         self.Label1.place(relx=0.307, rely=0.17, height=61, width=564)
