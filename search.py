@@ -12,15 +12,19 @@ def scrape(topic):
     
 
     links=[] #store links in a list
+
     for i in range(0,len(t)):
         #print("OPTION : ")
         #print(i) #option number for future reference
+        heading=headings[i].text
+        desc=t[i].text
         #print(headings[i].text) #print headings of the search results
         #print(t[i].text) #print the description of the search
         link=t[i].a #extract the <a> </a> tag 
 
-        href="https://www.wikipedia.org"+link['href'] #extract the link
+        href=heading+" "+desc+"|| https://www.wikipedia.org"+link['href'] #extract the link
         links.append(href) #append links to list 
+        links.append(" ")
         #print("-----------------------------------")
         #print()
 

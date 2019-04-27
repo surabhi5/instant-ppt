@@ -50,17 +50,23 @@ def startProcess(term):
     from search import scrape
     
     print("Looking for : "+term)
+    searching()
 
     try:
         results = scrape(term)
         #print(results)
 
         insertToList(results)
+        stopsearching()
     except Exception as e:
         results=[]
         results.append("Please enter a valid search" + str(e))
         insertToList(results)
-
+def searching():
+    w.Button1["text"]="Searching.."
+    
+def stopsearching():
+    w.Button1["text"]="Search.."
 
 def insertToList(links):
     w.Listbox1.delete(0,tk.END)
@@ -72,18 +78,32 @@ def pressPPT():
     url=str(w.Listbox1.get(tk.ACTIVE))
     print(url)
     try:
+        startLoading()
         t1=Thread(target=makePPT,args=(url,))
         t1.start()
     except Exception as e:
         print(str(e))
 
+def startLoading():
+    w.Button3["text"]="Loading.."
+    w.Button3["state"]=tk.DISABLED
+
+def stopLoading():
+    w.Button3["text"]="Open"
+    w.Button3["state"]=tk.NORMAL
+
 def makePPT(url):
     if(len(url.strip())>0):
+        url=url[url.rfind('||')+2:len(url)]
+        url=url.strip()
+        print("Extracted : "+ url)
+        
         from instant_ppt import tt, savePPT
         results=tt(url)
 
         s=url[(url.rfind('/')+1):len(url)]
         savePPT(results,s)
+        stopLoading()
     else:
         print("Nothing selected... not doing anything..")
 
@@ -102,7 +122,7 @@ def openFile(filename):
         if(os.path.exists(filename)):
             os.system("start "+filename)
         else:
-            print("File doesn't exist")
+            print("File doesn't exists")
     except Exception as e:
         print(str(e))    
 

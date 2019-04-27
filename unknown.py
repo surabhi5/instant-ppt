@@ -53,7 +53,7 @@ class Toplevel1:
         _compcolor = '#d9d9d9' # X11 color: 'gray85'
         _ana1color = '#d9d9d9' # X11 color: 'gray85' 
         _ana2color = '#d9d9d9' # X11 color: 'gray85' 
-        font10 = "-family {Courier New} -size 10 -weight normal -slant"  \
+        font10 = "-family {Courier New} -size 15 -weight normal -slant"  \
             " roman -underline 0 -overstrike 0"
 
         top.geometry("1366x705")
@@ -84,8 +84,8 @@ class Toplevel1:
         self.Button1.configure(command=unknown_support.search)
 
         self.Listbox1 = tk.Listbox(top)
-        self.Listbox1.place(relx=0.344, rely=0.34, relheight=0.428
-                , relwidth=0.332)
+        self.Listbox1.place(relx=0.001, rely=0.34, relheight=0.428
+                , relwidth=0.999)
         self.Listbox1.configure(background="white")
         self.Listbox1.configure(disabledforeground="#a3a3a3")
         self.Listbox1.configure(font=font10)
@@ -119,7 +119,7 @@ class Toplevel1:
         self.Button3.configure(text='''Open..''')
         self.Button3.configure(width=67)
         self.Button3.configure(command=unknown_support.clickOpen)
-
+        self.Button3.configure(state=tk.NORMAL)
         self.Label1 = tk.Label(top)
         self.Label1.place(relx=0.307, rely=0.17, height=61, width=564)
         self.Label1.configure(background="#d9d9d9")
