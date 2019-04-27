@@ -40,9 +40,12 @@ def search():
     print("Search pressed")
     try:
         s=w.Entry1.get()
+        if(len(s.strip())>0):
         #running on a new thread, main thread will crash! 
-        t1=Thread(target=startProcess, args=(s,))
-        t1.start()
+            t1=Thread(target=startProcess, args=(s,))
+            t1.start()
+        else:
+            print("Nothing entered")
     except Exception as e:
         print("An error occured: "+e)
 
@@ -60,8 +63,11 @@ def startProcess(term):
         stopsearching()
     except Exception as e:
         results=[]
-        results.append("Please enter a valid search" + str(e))
+        results.append("An exception occured")
+        results.append(" ")
+        results.append(str(e))
         insertToList(results)
+        stopsearching()
 def searching():
     w.Button1["text"]="Searching.."
     
