@@ -40,7 +40,7 @@ def tt(url):
 
     
 def savePPT(result,query):
-    neu,pos,neg=analyze(result) #analyze sentiment
+    neu,pos,neg=analyze(result,0) #analyze sentiment
 
     current_dir=os.path.dirname(os.path.realpath(__file__))
 
