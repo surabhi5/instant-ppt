@@ -13,8 +13,8 @@ pos=[] #store positive sentences
 neg=[] #store negative sentences
 neu=[] #store neutral sentences
 
-def tt(topic):
-    url=scrape(topic)
+def tt(url):
+    #url=scrape(topic)
     
     imagetodownload = url[(url.rfind('/')+1):len(url)]
     imagetodownload = imagetodownload.replace('_', ' ')
@@ -36,128 +36,125 @@ def tt(topic):
     import re
     from summarizer import summarize
     return summarize(text)
+    
 
     
-print("Enter query : ")
-query=input() 
+def savePPT(result,query):
+    neu,pos,neg=analyze(result,0) #analyze sentiment
 
-result = tt(query)
+    current_dir=os.path.dirname(os.path.realpath(__file__))
 
-neu,pos,neg=analyze(result) #analyze sentiment
+    prs = Presentation(current_dir+"\\abcd.pptx")
 
-current_dir=os.path.dirname(os.path.realpath(__file__))
-
-prs = Presentation(current_dir+"\\abcd.pptx")
-
-title_slide_layout = prs.slide_layouts[0]
-slide = prs.slides.add_slide(title_slide_layout)
-title = slide.shapes.title
-subtitle = slide.placeholders[1]
-
-title.text = query
-subtitle.text = result[0]
-
-
-img_path = 'image0.jpg'
-blank_slide_layout = prs.slide_layouts[0]
-slide = prs.slides.add_slide(blank_slide_layout)
-title=slide.shapes.title
-para=slide.placeholders[1]
-title.text=" "
-para.text=" "
-
-
-top=Inches(2)
-left = Inches(1)
-height = Inches(4)
-pic = slide.shapes.add_picture(img_path, left, top, height=height)
-
-
-if(len(neu)>0):
     title_slide_layout = prs.slide_layouts[0]
     slide = prs.slides.add_slide(title_slide_layout)
     title = slide.shapes.title
     subtitle = slide.placeholders[1]
 
-    title.text = "ABOUT"
-    subtitle.text = " "
+    title.text = query
+    subtitle.text = result[0]
 
 
-    for s in neu :
+    img_path = 'image0.jpg'
+    blank_slide_layout = prs.slide_layouts[0]
+    slide = prs.slides.add_slide(blank_slide_layout)
+    title=slide.shapes.title
+    para=slide.placeholders[1]
+    title.text=" "
+    para.text=" "
+
+
+    top=Inches(2)
+    left = Inches(1)
+    height = Inches(4)
+    pic = slide.shapes.add_picture(img_path, left, top, height=height)
+
+
+    if(len(neu)>0):
+        title_slide_layout = prs.slide_layouts[0]
         slide = prs.slides.add_slide(title_slide_layout)
         title = slide.shapes.title
-        para=slide.placeholders[1]
+        subtitle = slide.placeholders[1]
 
-        title.text = " "
-        para.text=s
-
-
-
-img_path = 'image1.jpg'
-blank_slide_layout = prs.slide_layouts[0]
-slide = prs.slides.add_slide(blank_slide_layout)
-title=slide.shapes.title
-para=slide.placeholders[1]
-title.text=" "
-para.text=" "
+        title.text = "ABOUT"
+        subtitle.text = " "
 
 
-top=Inches(2)
-left = Inches(1)
-height = Inches(4)
-pic = slide.shapes.add_picture(img_path, left, top, height=height)
+        for s in neu :
+            slide = prs.slides.add_slide(title_slide_layout)
+            title = slide.shapes.title
+            para=slide.placeholders[1]
 
-if(len(pos)>0):
-    title_slide_layout = prs.slide_layouts[0]
-    slide = prs.slides.add_slide(title_slide_layout)
-    title = slide.shapes.title
-    subtitle = slide.placeholders[1]
-
-    title.text = "ADVANTAGES"
-    subtitle.text = " "
+            title.text = " "
+            para.text=s
 
 
-    for s in pos :
+
+    img_path = 'image1.jpg'
+    blank_slide_layout = prs.slide_layouts[0]
+    slide = prs.slides.add_slide(blank_slide_layout)
+    title=slide.shapes.title
+    para=slide.placeholders[1]
+    title.text=" "
+    para.text=" "
+
+
+    top=Inches(2)
+    left = Inches(1)
+    height = Inches(4)
+    pic = slide.shapes.add_picture(img_path, left, top, height=height)
+
+    if(len(pos)>0):
+        title_slide_layout = prs.slide_layouts[0]
         slide = prs.slides.add_slide(title_slide_layout)
         title = slide.shapes.title
-        para=slide.placeholders[1]
+        subtitle = slide.placeholders[1]
 
-        title.text = " "
-        para.text=s
-
-
+        title.text = "ADVANTAGES"
+        subtitle.text = " "
 
 
-img_path = 'image2.jpg'
-blank_slide_layout = prs.slide_layouts[0]
-slide = prs.slides.add_slide(blank_slide_layout)
-title=slide.shapes.title
-para=slide.placeholders[1]
-title.text=" "
-para.text=" "
+        for s in pos :
+            slide = prs.slides.add_slide(title_slide_layout)
+            title = slide.shapes.title
+            para=slide.placeholders[1]
+
+            title.text = " "
+            para.text=s
 
 
-top=Inches(2)
-left = Inches(1)
-height = Inches(4)
-pic = slide.shapes.add_picture(img_path, left, top, height=height)
 
-if(len(neg)>0):
-    title_slide_layout = prs.slide_layouts[0]
-    slide = prs.slides.add_slide(title_slide_layout)
-    title = slide.shapes.title
-    subtitle = slide.placeholders[1]
 
-    title.text = "DISADVANTAGES"
-    subtitle.text = " "
+    img_path = 'image2.jpg'
+    blank_slide_layout = prs.slide_layouts[0]
+    slide = prs.slides.add_slide(blank_slide_layout)
+    title=slide.shapes.title
+    para=slide.placeholders[1]
+    title.text=" "
+    para.text=" "
 
-    for s in neg :
+
+    top=Inches(2)
+    left = Inches(1)
+    height = Inches(4)
+    pic = slide.shapes.add_picture(img_path, left, top, height=height)
+
+    if(len(neg)>0):
+        title_slide_layout = prs.slide_layouts[0]
         slide = prs.slides.add_slide(title_slide_layout)
         title = slide.shapes.title
-        para=slide.placeholders[1]
+        subtitle = slide.placeholders[1]
 
-        title.text = " "
-        para.text=s
+        title.text = "DISADVANTAGES"
+        subtitle.text = " "
+
+        for s in neg :
+            slide = prs.slides.add_slide(title_slide_layout)
+            title = slide.shapes.title
+            para=slide.placeholders[1]
+
+            title.text = " "
+            para.text=s
 
 
-prs.save('output.pptx')
+    prs.save('output.pptx')

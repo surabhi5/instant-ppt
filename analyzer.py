@@ -22,4 +22,25 @@ def analyze(sentences):
         print()
 
     return neutral_sentences,positive_sentences,negative_sentences
+
+def analyze(sentences, num):
+    print("Func callled : "+str(num))
+    from textblob import TextBlob
+
+    neutral_sentences=[]
+    positive_sentences=[]
+    negative_sentences=[]
+
+    for sentence in sentences: 
+        analysis = TextBlob(sentence)
+        
+        if(analysis.sentiment.polarity==0):
+            neutral_sentences.append(sentence)
+        elif(analysis.sentiment.polarity>0 and analysis.sentiment.polarity<=1):
+            positive_sentences.append(sentence)
+        elif(analysis.sentiment.polarity>=-1 and analysis.sentiment.polarity<0):
+            negative_sentences.append(sentence)
+    
+    return neutral_sentences,positive_sentences,negative_sentences
+
     
