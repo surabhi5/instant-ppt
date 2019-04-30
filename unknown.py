@@ -6,6 +6,7 @@
 #    Apr 26, 2019 08:30:12 PM IST  platform: Windows NT
 
 import sys
+import PIL.Image, PIL.ImageTk
 
 try:
     import Tkinter as tk
@@ -26,7 +27,10 @@ def vp_start_gui():
     global val, w, root
     root = tk.Tk()
     top = Toplevel1 (root)
+    root.configure(bg='white')
     unknown_support.init(root, top)
+    root.iconbitmap('res/icon.ico')
+    root.state('zoomed')
     root.mainloop()
 
 w = None
@@ -48,16 +52,16 @@ class Toplevel1:
     def __init__(self, top=None):
         '''This class configures and populates the toplevel window.
            top is the toplevel containing window.'''
-        _bgcolor = '#d9d9d9'  # X11 color: 'gray85'
+        _bgcolor = '#ffffff'  # X11 color: 'gray85'
         _fgcolor = '#000000'  # X11 color: 'black'
-        _compcolor = '#d9d9d9' # X11 color: 'gray85'
-        _ana1color = '#d9d9d9' # X11 color: 'gray85' 
-        _ana2color = '#d9d9d9' # X11 color: 'gray85' 
+        _compcolor = '#ffffff' # X11 color: 'gray85'
+        _ana1color = '#ffffff' # X11 color: 'gray85' 
+        _ana2color = '#ffffff' # X11 color: 'gray85' 
         font10 = "-family {Courier New} -size 15 -weight normal -slant"  \
             " roman -underline 0 -overstrike 0"
 
         top.geometry("1366x705")
-        top.title("Realtime Powerpoint Generator")
+        top.title("Instant Powerpoint")
         top.configure(background="#d9d9d9")
 
         self.Entry1 = tk.Entry(top)
@@ -70,18 +74,24 @@ class Toplevel1:
         self.Entry1.configure(width=364)
 
         self.Button1 = tk.Button(top)
-        self.Button1.place(relx=0.615, rely=0.284, height=34, width=87)
-        self.Button1.configure(activebackground="#d9d9d9")
-        self.Button1.configure(activeforeground="#000000")
-        self.Button1.configure(background="#d9d9d9")
+        self.Button1.place(relx=0.615, rely=0.280, height=36, width=90)
+        self.Button1.configure(activebackground="#ffffff")
+        self.Button1.configure(activeforeground="#ffffff")
+        self.Button1.configure(background="#ffffff")
         self.Button1.configure(disabledforeground="#a3a3a3")
-        self.Button1.configure(foreground="#000000")
-        self.Button1.configure(highlightbackground="#d9d9d9")
-        self.Button1.configure(highlightcolor="black")
+        self.Button1.configure(foreground="#ffffff")
+        self.Button1.configure(highlightbackground="#ffffff")
+        self.Button1.configure(highlightcolor="white")
         self.Button1.configure(pady="0")
+        self.Button1.configure(borderwidth=0)
         self.Button1.configure(text='''Search''')
         self.Button1.configure(width=87)
         self.Button1.configure(command=unknown_support.search)
+        search_image=PIL.Image.open("res/search.png")
+        photo_search_image=PIL.ImageTk.PhotoImage(search_image)
+        self.Button1.configure(image=photo_search_image)
+        self.Button1.image=photo_search_image
+        
 
         self.Listbox1 = tk.Listbox(top)
         self.Listbox1.place(relx=0.001, rely=0.34, relheight=0.428
@@ -94,39 +104,58 @@ class Toplevel1:
 
         self.Button2 = tk.Button(top)
         self.Button2.place(relx=0.344, rely=0.78, height=44, width=67)
-        self.Button2.configure(activebackground="#d9d9d9")
-        self.Button2.configure(activeforeground="#000000")
-        self.Button2.configure(background="#d9d9d9")
+        self.Button2.configure(activebackground="#ffffff")
+        self.Button2.configure(activeforeground="#ffffff")
+        self.Button2.configure(background="#ffffff")
         self.Button2.configure(disabledforeground="#a3a3a3")
-        self.Button2.configure(foreground="#000000")
-        self.Button2.configure(highlightbackground="#d9d9d9")
-        self.Button2.configure(highlightcolor="black")
+        self.Button2.configure(foreground="#ffffff")
+        self.Button2.configure(highlightbackground="#ffffff")
+        self.Button2.configure(highlightcolor="white")
+        self.Button2.configure(borderwidth=0)
         self.Button2.configure(pady="0")
         self.Button2.configure(text='''PPT!''')
         self.Button2.configure(width=67)
         self.Button2.configure(command=unknown_support.pressPPT)
+        ppt_image=PIL.Image.open("res/ppt.png")
+        photo_ppt_image=PIL.ImageTk.PhotoImage(ppt_image)
+        self.Button2.configure(image=photo_ppt_image)
+        self.Button2.image=photo_ppt_image
+        
 
         self.Button3 = tk.Button(top)
         self.Button3.place(relx=0.63, rely=0.78, height=44, width=67)
-        self.Button3.configure(activebackground="#d9d9d9")
-        self.Button3.configure(activeforeground="#000000")
-        self.Button3.configure(background="#d9d9d9")
+        self.Button3.configure(activebackground="#ffffff")
+        self.Button3.configure(activeforeground="#ffffff")
+        self.Button3.configure(background="#ffffff")
         self.Button3.configure(disabledforeground="#a3a3a3")
-        self.Button3.configure(foreground="#000000")
-        self.Button3.configure(highlightbackground="#d9d9d9")
-        self.Button3.configure(highlightcolor="black")
+        self.Button3.configure(foreground="#ffffff")
+        self.Button3.configure(highlightbackground="#ffffff")
+        self.Button3.configure(highlightcolor="white")
         self.Button3.configure(pady="0")
         self.Button3.configure(text='''Open..''')
         self.Button3.configure(width=67)
         self.Button3.configure(command=unknown_support.clickOpen)
         self.Button3.configure(state=tk.NORMAL)
+        self.Button3.configure(borderwidth=0)
+        open_image=PIL.Image.open("res/open.png")
+        photo_open_image=PIL.ImageTk.PhotoImage(open_image)
+        self.Button3.configure(image=photo_open_image)
+        self.Button3.image=photo_open_image
+
+
+
         self.Label1 = tk.Label(top)
         self.Label1.place(relx=0.307, rely=0.17, height=61, width=564)
-        self.Label1.configure(background="#d9d9d9")
+        self.Label1.configure(background="white")
         self.Label1.configure(disabledforeground="#a3a3a3")
         self.Label1.configure(foreground="#000000")
         self.Label1.configure(text='''Realtime Powerpoint Generator''')
         self.Label1.configure(width=564)
+        image=PIL.Image.open("res/banner.png")
+        photo_image=PIL.ImageTk.PhotoImage(image)
+
+        self.Label1.configure(image=photo_image)
+        self.Label1.image=photo_image
 
 if __name__ == '__main__':
     vp_start_gui()
